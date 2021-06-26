@@ -3,20 +3,31 @@ class MemoryGame {
     this.cards = cards;
     this.pickedCards = [];
     this.pairsClicked = 0;
-    this.pairsGuessed = [];
+    this.pairsGuessed = 0;
+    this.cards = this.shuffleCards(cards);
   }
 
   /*every time you create a new game, the order of the cards
   should change. HINT: can implement Fischer-Yates shuffle.*/
-  shuffleCards() {
-    // ... write your code here
+  shuffleCards(cardsArray) {
+    if (!this.cards) {
+      return undefined;
+    }
+    let counter = cardsArray.length;
+    while (counter > 0) {
+      indexed = Math.floor(Math.random() * counter);
+      counter--;
+      temp = cardsArray[counter];
+      cardsArray[counter] = cardsArray[index];
+      cardsArray[index] = temp;
+    }
+    return cardsArray;
   }
 
   //method to compare cards:
   checkIfPair(card1, card2) {
     this.pairsClicked += 1;
-
-    if (card1 == card2) {
+    if (card1 === card2) {
       this.pairsGuessed += 1;
       return true;
     } else {
