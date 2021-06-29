@@ -50,6 +50,7 @@ window.addEventListener('load', (event) => {
       } else {
         return false;
       }
+      console.log('Card clicked: ', card);
     });
   });
 });
