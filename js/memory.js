@@ -4,27 +4,21 @@ class MemoryGame {
     this.pickedCards = [];
     this.pairsClicked = 0;
     this.pairsGuessed = 0;
-    this.cards = this.shuffleCards(cards);
   }
 
   /*every time you create a new game, the order of the cards
   should change. HINT: can implement Fischer-Yates shuffle.*/
-  shuffleCards(cardsArray) {
-    if (!this.cards) {
-      return undefined;
+  shuffleCards(cards) {
+    let currentIndex = this.cards.length;
+    while (currentIndex > 0) {
+      currentIndex--;
+      const randomIndex = Math.floor(Math.random() * currentIndex);
+      let temporaryValue = this.cards[currentIndex];
+      this.cards[currentIndex] = this.cards[randomIndex];
+      this.cards[randomIndex] = temporaryValue;
     }
-    let counter = cardsArray.length;
-    while (counter > 0) {
-      indexed = Math.floor(Math.random() * counter);
-      counter--;
-      temp = cardsArray[counter];
-      cardsArray[counter] = cardsArray[index];
-      cardsArray[index] = temp;
-    }
-    return cardsArray;
   }
 
-  //method to compare cards:
   checkIfPair(card1, card2) {
     this.pairsClicked += 1;
     if (card1 === card2) {
@@ -34,7 +28,6 @@ class MemoryGame {
       return false;
     }
   }
-
   //method to check if game is finished.
   /*need to check if prop pairsGuessed has reached THE # OF 
   PAIRS THE GAME HAS*/
